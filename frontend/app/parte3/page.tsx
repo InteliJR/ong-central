@@ -1,7 +1,13 @@
+import Footer from "@/components/nossos_componentes/Footer";
+import VoluntarioBanner from "@/components/nossos_componentes/VoluntarioBanner";
+import Parcerias from "@/app/parte3/Parcerias";
+
 function Parte3(){
     return(
         <>
-            <h1>Parte3</h1>
+            <VoluntarioBanner />
+
+            <Parcerias />
         </>
     )
 }
