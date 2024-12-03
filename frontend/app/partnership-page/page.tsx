@@ -15,7 +15,7 @@ function Parcerias() {
       <Header />
 
       {/* Primeira Página da Parcerias */}
-      <div className="w-full flex bg-[#b9e0a7] max-h-screen sm:min-h-screen flex-col md:flex-row justify-around items-center p-16 md:p-0">
+      <div className="w-full flex bg-[#fff] max-h-screen sm:min-h-screen flex-col md:flex-row justify-around items-center p-16 md:p-0">
         {/* Left Content */}
         <div className="w-full md:w-1/3 max-w-xs md:max-w-none space-y-8 text-center md:text-left mx-auto">
           <h1 className="text-2xl md:text-4xl font-bold">Entidades Agregadas</h1>
@@ -59,7 +59,7 @@ function Parcerias() {
       </div>
 
       {/* Segunda Página da Parcerias */}
-      <div className="bg-[#95c797] max-h-screen md:min-h-screen flex flex-col md:flex-row justify-around items-center p-16 md:p-0">
+      <div className="bg-[#DBF2DC] max-h-screen md:min-h-screen flex flex-col md:flex-row justify-around items-center p-16 md:p-0">
         {/* Carousel */}
         <div className="w-full md:w-1/4 max-w-sm md:max-w-none order-2 md:order-1 mt-8 md:mt-0 mx-auto">
           <Carousel>

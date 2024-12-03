@@ -2,7 +2,7 @@ import Banner from "@/components/nossos_componentes/Banner";
 import Header from "@/components/nossos_componentes/Header";
 import { Button } from "@/components/shadcnui/button";
 
-function Parte1(){
+function Cabecalho(){
     return(
         <>
             <Header />
@@ -19,6 +19,6 @@ function Parte1(){
         </>
     )
 }
-export default Parte1;
+export default Cabecalho;
 
 // localhost:3000/parte1
