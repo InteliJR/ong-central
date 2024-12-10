@@ -22,7 +22,7 @@
   width: 64px; /* Largura da seta */
   height: 64px; /* Altura da seta */
   position: absolute;
-  top: 65%; /* Centraliza verticalmente */
+  top: 58%; /* Centraliza verticalmente */
   transform: translateY(-50%); /* Centraliza verticalmente em relação à imagem */
   border-radius: 8px; /* Tornar as setas com borda arredondada */
   z-index: 1; /* Para garantir que as setas fiquem acima da imagem */
@@ -65,11 +65,12 @@
   text-align: center; /* Centraliza o título */
   font-size: 36px; /* Ajuste do tamanho do título */
   font-weight: 600; /* Deixa o título em negrito */
+  margin-bottom: -20px; /* Remover qualquer margem adicional que esteja criando espaçamento */
 }
 
 .carouselDots {
   position: absolute;
-  bottom: 16px; /* Coloca os dots 16px abaixo da imagem */
+  bottom: 32px; /* Coloca os dots 16px abaixo da imagem */
   left: 50%;
   transform: translateX(-50%);
   display: flex;
