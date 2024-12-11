@@ -1,0 +1,95 @@
+/* Carrossel.module.css */
+
+.carouselContainer {
+  width: calc(100% - 200px); /* Ajusta a largura para 100% menos 100px de margem de cada lado */
+  height: 500px; /* Altura fixa de 500px */
+  margin: 0 auto; /* Centraliza o carrossel */
+  padding: 20px; /* Padding interno */
+  border-radius: 15px; /* Cantos arredondados para a parte superior */
+  box-sizing: border-box; /* Garantir que o padding não altere o tamanho do container */
+  position: relative;
+  overflow: hidden; /* Garante que a imagem não ultrapasse os limites do carrossel */
+  margin-bottom: 160px; /* Adicionando margem de 160px abaixo das imagens */
+}
+
+.carouselButton {
+  background-color: rgba(76, 175, 80, 0.5); /* Cor de fundo verde com 50% de opacidade */
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: white; /* Cor branca para as setas */
+  padding: 0; /* Removendo padding extra */
+  width: 64px; /* Largura da seta */
+  height: 64px; /* Altura da seta */
+  position: absolute;
+  top: 58%; /* Centraliza verticalmente */
+  transform: translateY(-50%); /* Centraliza verticalmente em relação à imagem */
+  border-radius: 8px; /* Tornar as setas com borda arredondada */
+  z-index: 1; /* Para garantir que as setas fiquem acima da imagem */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Sombra leve para as setas */
+}
+
+.carouselButton:hover {
+  background-color: rgba(76, 175, 80, 0.7); /* Cor de fundo mais escura ao passar o mouse */
+}
+
+.carouselButton:first-of-type {
+  left: 36px; /* Botão de navegação esquerda 8px para dentro da borda interna */
+}
+
+.carouselButton:last-of-type {
+  right: 36px; /* Botão de navegação direita 8px para dentro da borda interna */
+}
+
+.carouselImageContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px; /* Arredondando os cantos da imagem */
+}
+
+.carouselImage {
+  width: 100%; /* Faz com que a imagem ocupe toda a largura do container */
+  height: auto; /* Mantém a proporção das imagens */
+  max-height: 100%; /* Limita a altura para o máximo do container */
+  border-radius: 15px; /* Cantos arredondados */
+  border: 1px solid #4CAF50; /* Borda verde de 1px na imagem */
+}
+
+.carouselTitle {
+  text-align: center; /* Centraliza o título */
+  font-size: 36px; /* Ajuste do tamanho do título */
+  font-weight: 600; /* Deixa o título em negrito */
+  margin-bottom: -20px; /* Remover qualquer margem adicional que esteja criando espaçamento */
+}
+
+.carouselDots {
+  position: absolute;
+  bottom: 32px; /* Coloca os dots 16px abaixo da imagem */
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  margin-bottom: 24px; /* Garante a margem de 16px abaixo da imagem para os dots */
+}
+
+.activeDot {
+  margin: 0 5px;
+  padding: 5px;
+  border-radius: 50%;
+  background-color: #888888; /* Cor do dot ativo */
+  cursor: pointer;
+}
+
+.inactiveDot {
+  margin: 0 5px;
+  padding: 5px;
+  border-radius: 50%;
+  background-color: #d9d9d9; /* Cor do dot inativo */
+  cursor: pointer;
+}
