@@ -1,0 +1,32 @@
+/* Cabecalho.module.css */
+
+/* Cabeçalho */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  background-color: #fff; /* Adicionei um fundo branco para o cabeçalho */
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column; /* Coloca os itens em coluna em telas menores */
+    align-items: center; /* Centraliza os itens */
+  }
+
+  .header h1 {
+    font-size: 24px; /* Tamanho menor para o título */
+    text-align: center; /* Centraliza o título */
+  }
+
+  .header .buttons {
+    flex-direction: column; /* Organiza os botões em coluna */
+    gap: 10px; /* Espaçamento entre os botões */
+  }
+
+  .header p {
+    font-size: 14px; /* Tamanho menor para o texto */
+  }
+}
