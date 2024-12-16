@@ -37,7 +37,7 @@ export default function DonationPage() {
       {/* Main Content */}
       <main className="flex-grow flex flex-col justify-between px-4 py-8 max-w-5xl mx-auto w-full">
         {/* Donation Options Section */}
-        <section className="space-y-6 mb-12">
+        <section id="donation-money" className="space-y-6 mb-12">
           <h1 className="text-2xl text-center">Se interessou pela causa?</h1>
           <h2 className="text-4xl text-center">
             Então, faça uma <span className="font-black">doação</span>!
@@ -92,7 +92,7 @@ export default function DonationPage() {
         </section>
 
         {/* Item Donation Section */}
-        <section className="space-y-6">
+        <section id="donation-items" className="space-y-6">
           <h2 className="text-2xl text-center">Não pode contribuir financeiramente?</h2>
           <h3 className="text-4xl text-center mb-8">
             Aceitamos <span className="font-black">doações de itens</span>!
