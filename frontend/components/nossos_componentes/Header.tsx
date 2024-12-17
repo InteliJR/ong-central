@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import { Button } from "../shadcnui/button";
+import NotificationsDropdown from './NotificationsDropdown';
+import Link from 'next/link';
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

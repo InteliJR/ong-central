@@ -1,4 +1,4 @@
-"use client"; // <-- Converte para Client Component
+"use client";
 import Image from 'next/image'
 import { Card } from "@/components/shadcnui/card"
 import { Button } from "@/components/shadcnui/button"
@@ -8,33 +8,33 @@ import { RadioGroup, RadioGroupItem } from "@/components/shadcnui/radio-group"
 import { Label } from "@/components/shadcnui/label"
 import Header from '../../components/nossos_componentes/Header'
 import emailjs from '@emailjs/browser';
-
+import DonationModal from '@/components/nossos_componentes/DonationModal';
+import RegularDonationModal from '@/components/nossos_componentes/RegularDonationModal';
 
 const SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID_DONATION;
 const TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID_DONATION;
 const PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
 
 export default function DonationPage() {
-
-  const handleOnSubmit = (event) => {
+  const handleOnSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, event.target, PUBLIC_KEY)
+    const target = event.currentTarget;
+    
+    emailjs.sendForm(SERVICE_ID || '', TEMPLATE_ID || '', target, PUBLIC_KEY)
       .then((result) => {
         console.log(result.text);
         alert('Mensagem enviada com sucesso!');
+        target.reset();
       }, (error) => {
         console.log(error.text);
         alert('Ocorreu um erro ao enviar a mensagem. Por favor, tente novamente.');
       });
-    event.target.reset();
   };
 
   return (
     <div className="min-h-screen bg-white flex flex-col">
-      {/* Green Header */}
       <Header />
       
-      {/* Main Content */}
       <main className="flex-grow flex flex-col justify-between px-4 py-8 max-w-5xl mx-auto w-full">
         {/* Donation Options Section */}
         <section id="donation-money" className="space-y-6 mb-12">
@@ -43,51 +43,10 @@ export default function DonationPage() {
             Então, faça uma <span className="font-black">doação</span>!
           </h2>
           
-          <div className="grid md:grid-cols-3 gap-6 mt-8">
-            <Card className="p-6 text-center space-y-4 hover:shadow-lg transition-shadow bg-green-50">
-              <div className="w-16 h-16 mx-auto bg-white rounded-full flex items-center justify-center">
-                <Image 
-                  src="/icone_1.svg" 
-                  alt='Quero ser doador regular' 
-                  width={96} 
-                  height={96} 
-                />
-              </div>
-              <div>
-                <p className="font-medium">Quero ser</p>
-                <p className="font-bold">doador regular</p>
-              </div>
-            </Card>
+          <div className="grid md:grid px-64 gap-6 mt-8">
+            {/* Donation Modals */}
+            <DonationModal />
 
-            <Card className="p-6 text-center space-y-4 hover:shadow-lg transition-shadow">
-              <div className="w-16 h-16 mx-auto bg-white rounded-full flex items-center justify-center">
-                <Image 
-                  src="/icone_2.svg" 
-                  alt='Quero doar agora' 
-                  width={96} 
-                  height={96} 
-                />
-              </div>
-              <div>
-                <p className="font-medium">Quero</p>
-                <p className="font-bold">doar agora</p>
-              </div>
-            </Card>
-
-            <Card className="p-6 text-center space-y-4 hover:shadow-lg transition-shadow">
-              <div className="w-16 h-16 mx-auto bg-white rounded-full flex items-center justify-center">
-                <Image 
-                  src="/icone_3.svg" 
-                  alt='Quero agendar uma doação' 
-                  width={96} 
-                  height={96} 
-                />
-              </div>
-              <div>
-                <p className="font-medium">Quero agendar</p>
-                <p className="font-bold">uma doação</p>
-              </div>
-            </Card>
           </div>
         </section>
 
