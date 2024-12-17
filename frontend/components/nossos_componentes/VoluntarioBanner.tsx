@@ -8,7 +8,7 @@ function VoluntarioBanner() {
     >
       <div className="w-full md:w-4/6 px-4 md:pl-[7.5%] space-y-8 md:text-left text-center">
         <div className="space-y-6 text-white">
-          <h1 className="text-xl sm:text-2xl md:text-[3rem] font-bold">
+          <h1 id="donation-time" className="text-xl sm:text-2xl md:text-[3rem] font-bold">
             <strong>Por que ser um voluntário?</strong>
           </h1>
           <h3 className="text-lg sm:text-xl md:text-[2rem]">Benefícios do Voluntário</h3>
