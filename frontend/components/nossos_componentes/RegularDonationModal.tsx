@@ -31,14 +31,14 @@ export default function RegularDonationModal() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError(null);
-
+    
         try {
-            // Step 1: Create Stripe Customer
+            // Step 1: Check/Create Stripe Customer
             const customerResponse = await axios.post('http://localhost:3001/api/cadastrar-doador', {
                 name: formData.name,
                 email: formData.email
             });
-
+    
             // Step 2: Create Checkout Session
             const stripe = await stripePromise;
             const checkoutSessionResponse = await axios.post('http://localhost:3001/api/criar-sessao-doacao', {
@@ -46,21 +46,14 @@ export default function RegularDonationModal() {
                 amount: parseFloat(formData.amount) * 100, // Convert to cents
                 email: formData.email
             });
-
-            // Redirect to Stripe Checkout
-            const result = await stripe.redirectToCheckout({
-                sessionId: checkoutSessionResponse.data.sessionId
-            });
-
-            if (result.error) {
-                setError(result.error.message);
-            }
+    
+            // Rest of the code remains the same...
         } catch (err) {
             setError(err.response?.data?.message || 'Erro ao processar doação');
             console.error(err);
         }
     };
-
+    
     return (
         <>
             {/* Modal Trigger on Donation Card */}

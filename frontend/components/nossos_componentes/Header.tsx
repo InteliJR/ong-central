@@ -17,7 +17,6 @@ function Header(){
                 </Link>
                 <Link href="/donation-page">
                 <div className="flex items-center space-x-2">
-                    <NotificationsDropdown />
                     <Button className="bg-[#DD5656] hover:bg-[#BA3E3E]">Doar Agora!</Button>
                 </div>
                 </Link>
