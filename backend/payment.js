@@ -26,7 +26,7 @@ app.post('/api/doar-unico', async (req, res) => {
         // Criar um PaymentIntent
         const paymentIntent = await stripe.paymentIntents.create({
             amount: Math.round(amount * 100), // Converte para centavos
-            currency: currency || 'usd', // Padrão USD
+            currency: currency || 'brl', // Padrão BRL (Real)
         });
 
         res.send({
@@ -40,7 +40,7 @@ app.post('/api/doar-unico', async (req, res) => {
 
 // Rota raiz para testar
 app.get('/', (req, res) => {
-    res.send('Servidor Express com Stripe rodando!');
+    res.send('Servidor Express com Stripe rodando em reais!');
 });
 
 // Inicializar o servidor
