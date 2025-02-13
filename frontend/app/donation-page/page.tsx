@@ -46,6 +46,7 @@ export default function DonationPage() {
           <div className="grid md:grid px-64 gap-6 mt-8">
             {/* Donation Modals */}
             <DonationModal />
+            <RegularDonationModal />
 
           </div>
         </section>
