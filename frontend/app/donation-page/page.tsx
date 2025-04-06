@@ -10,6 +10,7 @@ import Header from '../../components/nossos_componentes/Header'
 import emailjs from '@emailjs/browser';
 import DonationModal from '@/components/nossos_componentes/DonationModal';
 import RegularDonationModal from '@/components/nossos_componentes/RegularDonationModal';
+import Footer from '@/components/nossos_componentes/Footer';
 
 const SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID_DONATION;
 const TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID_DONATION;
@@ -37,13 +38,10 @@ export default function DonationPage() {
       
       <main className="flex-grow flex flex-col justify-between px-4 py-8 max-w-5xl mx-auto w-full">
         {/* Donation Options Section */}
-        <section id="donation-money" className="space-y-6 mb-12">
-          <h1 className="text-2xl text-center">Se interessou pela causa?</h1>
-          <h2 className="text-4xl text-center">
-            Então, faça uma <span className="font-black">doação</span>!
-          </h2>
+        <section id="donation-money" className="space-y-6 mb-12 flex flex-col justify-center items-center">
+          <h1 className="text-2xl text-center">Se interessou pela causa? <br></br><p className='text-4xl font-medium'>Então faça uma doação</p></h1>
           
-          <div className="grid md:grid px-64 gap-6 mt-8">
+          <div className="flex flex-row w-full items-center justify-center gap-6">
             {/* Donation Modals */}
             <DonationModal />
             <RegularDonationModal />
@@ -53,10 +51,8 @@ export default function DonationPage() {
 
         {/* Item Donation Section */}
         <section id="donation-items" className="space-y-6">
-          <h2 className="text-2xl text-center">Não pode contribuir financeiramente?</h2>
-          <h3 className="text-4xl text-center mb-8">
-            Aceitamos <span className="font-black">doações de itens</span>!
-          </h3>
+          <h2 className="text-2xl text-center">Não pode contribuir financeiramente?<br></br> <p className='text-4xl font-medium'>Aceitamos doações de itens</p></h2>
+          
 
           <form className="space-y-6" onSubmit={handleOnSubmit}>
             <div className="grid md:grid-cols-2 gap-6">
@@ -131,6 +127,7 @@ export default function DonationPage() {
           </form>
         </section>
       </main>
+      <Footer></Footer>
     </div>
   )
 }

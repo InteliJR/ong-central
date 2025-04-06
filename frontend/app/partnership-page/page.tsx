@@ -1,6 +1,6 @@
 import Header from "@/components/nossos_componentes/Header";
 import { Card, CardContent } from "@/components/shadcnui/card";
-import Footer from "@/components/nossos_componentes/Footer";''
+import Footer from "@/components/nossos_componentes/Footer";
 import {
   Carousel,
   CarouselContent,
@@ -8,104 +8,130 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/shadcnui/carousel";
+import Image from "next/image";
+import { ChevronLeft, ChevronRight, ChevronRightCircle } from "lucide-react";
 
 function Parcerias() {
+  // Sample data for carousels - replace with your actual data
+  const entidadesImages = [
+    "/jorge.png?height=100&width=150",
+    "/vero.png?height=100&width=150",
+    "/xodo.png?height=100&width=150",
+    "/grl.png?height=100&width=150"
+  ];
+  
+  const colaboradoresImages = [
+    "/jorge.png?height=100&width=150",
+    "/vero.png?height=100&width=150",
+    "/xodo.png?height=100&width=150",
+    "/grl.png?height=100&width=150"
+  ];
+
   return (
     <div>
       <Header />
-
-      {/* Primeira Página da Parcerias */}
-      <div className="w-full flex bg-[#fff] max-h-screen sm:min-h-screen flex-col md:flex-row justify-around items-center p-16 md:p-0">
-        {/* Left Content */}
-        <div className="w-full md:w-1/3 max-w-xs md:max-w-none space-y-8 text-center md:text-left mx-auto">
-          <h1 className="text-2xl md:text-4xl font-bold">Entidades Agregadas</h1>
-          <p className="text-sm md:text-lg">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
-            lacinia odio vitae vestibulum vestibulum. Cras venenatis euismod
-            malesuada.
-          </p>
-        </div>
-
-        {/* Carousel */}
-        <div className="w-full md:w-1/4 max-w-sm md:max-w-none mt-8 md:mt-0 mx-auto">
-          <Carousel>
-            <CarouselContent>
-              {[
-                'image1.jpg', // Replace with your actual image paths or URLs
-                'image2.jpg',
-                'image3.jpg',
-                'image4.jpg',
-                'image5.jpg',
-              ].map((image, index) => (
-                <CarouselItem key={index}>
-                  <div className="p-2">
-                    <Card>
-                      <CardContent className="flex aspect-square items-center justify-center p-4">
-                        <img
-                          src={image}
-                          alt={`Slide ${index + 1}`}
-                          className="object-cover w-full h-full rounded-lg"
-                        />
-                      </CardContent>
-                    </Card>
-                  </div>
-                </CarouselItem>
+      {/* Entidades Agregadas Section */}
+      <section className="px-64 py-12 bg-white flex flex-col">
+        
+        <div className="flex gap-16">
+          <div className="max-w-md">
+          <h2 className="text-3xl font-medium text-[#313d44] mb-4">Entidades Agregadas</h2>
+            <p className="text-[#313d44] mb-6">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum
+              vestibulum. Cras venenatis euismod malesuada.
+            </p>
+            <p className="text-[#313d44]">
+              Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+            </p>
+          </div>
+          <div className="flex-1 relative">
+            <Carousel className="w-full max-w-[285px] mx-auto">
+              <CarouselContent>
+                {entidadesImages.map((src, index) => (
+                  <CarouselItem key={index}>
+                    <div className="w-full h-[215px] bg-[#dbf2dc] rounded-lg flex items-center justify-center">
+                      <Image
+                        src={src}
+                        alt={`Entidade ${index + 1}`}
+                        width={150}
+                        height={100}
+                        className="object-contain"
+                      />
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious className="left-[-20px] bg-white shadow-md border-none focus:ring-0 focus:ring-offset-0">
+                <ChevronLeft className="w-6 h-6 text-[#4caf50]" />
+              </CarouselPrevious>
+              <CarouselNext className="right-[-20px] bg-white shadow-md border-none focus:ring-0 focus:ring-offset-0">
+                <ChevronRight className="w-6 h-6 text-[#4caf50]" />
+              </CarouselNext>
+            </Carousel>
+            <div className="flex justify-center gap-1 mt-4">
+              {entidadesImages.map((_, index) => (
+                <div 
+                  key={index}
+                  className={`w-2 h-2 rounded-full ${index === 0 ? 'bg-[#4caf50]' : 'bg-[#d9d9d9]'}`}
+                ></div>
               ))}
-            </CarouselContent>
-            <CarouselPrevious />
-            <CarouselNext />
-          </Carousel>
+            </div>
+          </div>
         </div>
-      </div>
+      </section>
 
-      {/* Segunda Página da Parcerias */}
-      <div className="bg-[#DBF2DC] max-h-screen md:min-h-screen flex flex-col md:flex-row justify-around items-center p-16 md:p-0">
-        {/* Carousel */}
-        <div className="w-full md:w-1/4 max-w-sm md:max-w-none order-2 md:order-1 mt-8 md:mt-0 mx-auto">
-          <Carousel>
-            <CarouselContent>
-              {[
-                'image1.jpg', // Replace with your actual image paths or URLs
-                'image2.jpg',
-                'image3.jpg',
-                'image4.jpg',
-                'image5.jpg',
-              ].map((image, index) => (
-                <CarouselItem key={index}>
-                  <div className="p-2">
-                    <Card>
-                      <CardContent className="flex aspect-square items-center justify-center p-4">
-                        <img
-                          src={image}
-                          alt={`Slide ${index + 1}`}
-                          className="object-cover w-full h-full rounded-lg"
-                        />
-                      </CardContent>
-                    </Card>
-                  </div>
-                </CarouselItem>
+      {/* Collaborators Section */}
+      <section className="px-64 py-12 bg-[#dbf2dc]">
+        <div className="flex gap-16">
+          <div className="relative w-[285px]">
+            <Carousel className="w-full max-w-[285px] mx-auto">
+              <CarouselContent>
+                {colaboradoresImages.map((src, index) => (
+                  <CarouselItem key={index}>
+                    <div className="w-full h-[215px] bg-white rounded-lg flex items-center justify-center">
+                      <Image
+                        src={src}
+                        alt={`Colaborador ${index + 1}`}
+                        width={150}
+                        height={100}
+                        className="object-contain"
+                      />
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious className="left-[-20px] bg-white shadow-md border-none focus:ring-0 focus:ring-offset-0">
+                <ChevronLeft className="w-6 h-6 text-[#4caf50]" />
+              </CarouselPrevious>
+              <CarouselNext className="right-[-20px] bg-white shadow-md border-none focus:ring-0 focus:ring-offset-0">
+                <ChevronRight className="w-6 h-6 text-[#4caf50]" />
+              </CarouselNext>
+            </Carousel>
+            <div className="flex justify-center gap-1 mt-4">
+              {colaboradoresImages.map((_, index) => (
+                <div 
+                  key={index}
+                  className={`w-2 h-2 rounded-full ${index === 0 ? 'bg-[#4caf50]' : 'bg-[#d9d9d9]'}`}
+                ></div>
               ))}
-            </CarouselContent>
-            <CarouselPrevious />
-            <CarouselNext />
-          </Carousel>
+            </div>
+          </div>
+          <div className="flex-1">
+            <h2 className="text-3xl font-medium text-[#313d44] mb-4">Colaboradores</h2>
+            <p className="text-[#313d44] mb-6">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum
+              vestibulum. Cras venenatis euismod malesuada.
+            </p>
+            <p className="text-[#313d44]">
+              Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+            </p>
+          </div>
         </div>
-
-        {/* Right Content */}
-        <div className="w-full md:w-1/3 max-w-xs md:max-w-none space-y-8 text-center md:text-left order-1 md:order-2 mx-auto">
-          <h1 className="text-2xl md:text-4xl font-bold">Colaboradores</h1>
-          <p className="text-sm md:text-lg">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
-            lacinia odio vitae vestibulum vestibulum. Cras venenatis euismod
-            malesuada.
-          </p>
-        </div>
-      </div>
-
+      </section>
+      
       <Footer />
     </div>
   );
 }
-
 
 export default Parcerias;

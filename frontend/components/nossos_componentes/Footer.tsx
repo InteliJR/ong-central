@@ -24,7 +24,7 @@ function Footer() {
   };
 
   return (
-    <footer className="bg-[#4CAF50] py-20 text-white">
+    <footer className="bg-[#4CAF50] py-20 text-white px-32">
       <div className="flex flex-col md:flex-row gap-12 items-center md:items-start justify-center">
         {/* Seção de Informações */}
         <div className="w-4/5 sm:w-3/5 md:w-2/5">

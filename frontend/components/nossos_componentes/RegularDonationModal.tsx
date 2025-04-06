@@ -13,6 +13,7 @@ import { Label } from "@/components/shadcnui/label";
 import { Card } from "@/components/shadcnui/card";
 import { loadStripe } from '@stripe/stripe-js';
 import axios from 'axios';
+import Image from 'next/image';
 
 // Substitua pela sua Stripe publishable key
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
@@ -66,14 +67,9 @@ export default function RegularDonationModal() {
       {/* Card que aciona o modal */}
       <Card 
         onClick={() => setIsOpen(true)} 
-        className="p-6 text-center space-y-4 hover:shadow-lg transition-shadow bg-green-50 cursor-pointer"
+        className="flex flex-col justify-center items-center p-6 w-1/2 h-56 text-center space-y-4 hover:shadow-lg transition-shadow bg-white cursor-pointer "
       >
-        <div className="w-16 h-16 mx-auto bg-white rounded-full flex items-center justify-center">
-          <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-green-600">
-            <path d="M12 22s-8-4.5-8-11.8A6 6 0 0 1 12 5a6 6 0 0 1 8 5.7c0 7.3-8 11.8-8 11.8z"/>
-            <path d="M12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-          </svg>
-        </div>
+        <Image src="/icone_1.svg" alt="Quero doar agora" width={96} height={96} />
         <div>
           <p className="font-medium">Quero ser</p>
           <p className="font-bold">doador regular</p>

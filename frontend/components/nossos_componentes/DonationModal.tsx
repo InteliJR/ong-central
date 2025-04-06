@@ -368,8 +368,8 @@ const DonationModal = ({ isOpen = false, onOpenChange, campaignTitle }: Donation
     <Dialog open={modalOpen} onOpenChange={handleOpenChange}>
       {!onOpenChange && (
         <DialogTrigger asChild>
-          <Card className="p-6 text-center space-y-4 hover:shadow-lg transition-shadow cursor-pointer">
-            <div className="w-16 h-16 mx-auto bg-white rounded-full flex items-center justify-center">
+          <Card className="flex flex-col justify-center items-center p-6 w-1/2 h-56 text-center space-y-4 hover:shadow-lg transition-shadow cursor-pointer">
+            <div className="mx-auto bg-white rounded-full flex items-center justify-center">
               <Image src="/icone_2.svg" alt="Quero doar agora" width={96} height={96} />
             </div>
             <div>

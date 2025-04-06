@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Button } from "../shadcnui/button";
 import NotificationsDropdown from './NotificationsDropdown';
 import Link from 'next/link';
+import Image from "next/image";
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -13,37 +14,16 @@ function Header() {
   };
 
   return (
-    <header className="h-16 w-full px-4 sm:px-[76px] flex items-center justify-between bg-white shadow-md">
-      <h1 className="text-xl font-bold">Central da Solidariedade</h1>
-
-      {/* Menu Mobile (Ícone de Hambúrguer) */}
-      <div className="flex sm:hidden">
-        <button onClick={toggleMenu} className="text-2xl">
-          &#9776; {/* Ícone de hambúrguer (três tracinhos) */}
-        </button>
+    <header className="h-16 px-64 border flex flex-row items-center justify-between">
+      <p>Central Solidariedade</p>
+      <div className="flex flex-row items-center w-1/2 justify-between">
+      <p>Entidades Parceiras</p>
+      <p>Para organizações</p>
+      <Button className="bg-[#DD5656] hover:bg-[#CD3333]">
+        <strong>Doar Agora!</strong>
+      </Button>
       </div>
 
-      {/* Menu Desktop */}
-      <div className="hidden sm:flex w-3/5 justify-between items-center h-full">
-        <p>Quem Somos?</p>
-        <p>Nossos parceiros</p>
-        <Button className="bg-[#DD5656] hover:bg-[#BA3E3E]">Doar Agora!</Button>
-      </div>
-
-      {/* Menu Mobile (quando aberto) */}
-      <div
-        className={`${
-          isMenuOpen ? "block" : "hidden"
-        } absolute top-16 left-0 w-full bg-white shadow-lg sm:hidden`}  
-      >
-        {/* Conteúdo do Menu Mobile com margem de 76px à esquerda */}
-        <div className="flex flex-col items-start py-4 gap-4 pl-[20px]">  {/* Adicionando margem à esquerda dos itens */}
-          <p className="text-lg">Quem Somos?</p>
-          <p className="text-lg">Nossos parceiros</p>
-          {/* Removendo w-full para o botão não ocupar toda a largura */}
-          <Button className="bg-[#DD5656] hover:bg-[#BA3E3E] sm:w-auto">Doar Agora!</Button> 
-        </div>
-      </div>
     </header>
   );
 }
