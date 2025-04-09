@@ -41,7 +41,7 @@ export default function RegularDonationModal() {
 
     try {
       // Cria uma sessão de checkout para assinatura no backend
-      const response = await axios.post('http://localhost:3001/api/create-subscription-session', {
+      const response = await axios.post('https://ong-project-latest-3.onrender.com/subscriptions/create-subscription-session', {
         name: formData.name,
         email: formData.email,
         amount: parseFloat(formData.amount) * 100 // Converter para centavos
@@ -74,6 +74,7 @@ export default function RegularDonationModal() {
           <p className="font-medium">Quero ser</p>
           <p className="font-bold">doador regular</p>
         </div>
+        <p className='text-[10px]'>Se for assinante e quiser cancelar a assinatura, ligue para (31) 9999-99999</p>
       </Card>
 
       {/* Modal para cadastro de doador regular */}

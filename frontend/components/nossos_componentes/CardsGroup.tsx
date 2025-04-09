@@ -3,7 +3,7 @@ import Card from "./Card";  // Ajuste o caminho conforme necessário
 
 const CardsGroup: React.FC = () => {
   return (
-    <div className="w-full px-4 sm:px-16 lg:px-32 py-8">
+    <div className="w-full px-4 sm:px-32 lg:px-32 py-8">
       {/* Grid responsivo com ajuste no gap */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 justify-items-center">
         <Card

@@ -24,7 +24,7 @@ function Footer() {
   };
 
   return (
-    <footer className="bg-[#4CAF50] py-20 text-white px-32">
+    <footer className="bg-[#4CAF50] py-20 text-white sm:px-16 px-4">
       <div className="flex flex-col md:flex-row gap-12 items-center md:items-start justify-center">
         {/* Seção de Informações */}
         <div className="w-4/5 sm:w-3/5 md:w-2/5">
@@ -35,23 +35,23 @@ function Footer() {
           <div className="text-base space-y-4">
             <div className="flex space-x-5 justify-center sm:justify-start">
               <img src="Phone.svg" alt="Telefone" />
-              <p>(11) 99999-9999</p>
+              <p>(31) 3939-3990</p>
             </div>
             <div className="flex space-x-5 justify-center sm:justify-start">
               <img src="Mail (1).svg" alt="Email" />
-              <p>centraldasolidariedade@gmail.com</p>
+              <p>csolidariedade@yahoo.com.br</p>
             </div>
             <div className="flex space-x-5 justify-center sm:justify-start">
               <a href="https://wa.me/5511999999999" target="_blank" rel="noopener noreferrer">
                 <img src="WhatsApp.svg" alt="WhatsApp" />
               </a>
-              <p>(11) 8999-9999</p>
+              <p>(31) 98986-7352</p>
             </div>
             <div className="flex space-x-5 justify-center sm:justify-start">
               <a href="https://instagram.com/centraldasolidariedade" target="_blank" rel="noopener noreferrer">
                 <img src="Instagram.svg" alt="Instagram" />
               </a>
-              <p>centraldasolidariedade</p>
+              <p>centralsolidariedade</p>
             </div>
           </div>
         </div>
@@ -61,7 +61,7 @@ function Footer() {
           <h2 className="text-2xl pb-8 text-center sm:text-left"><strong>Contato:</strong></h2>
           <form className="space-y-6" onSubmit={handleOnSubmit}>
             <div className="space-y-2">
-              <label htmlFor="nome" className="block text-lg text-center sm:text-left">
+              <label htmlFor="nome" className="block text-lg text-left sm:text-left">
                 Nome:
               </label>
               <Input 
@@ -74,7 +74,7 @@ function Footer() {
               />
             </div>
             <div className="space-y-2">
-              <label htmlFor="email" className="block text-lg text-center sm:text-left">
+              <label htmlFor="email" className="block text-lg text-left sm:text-left">
                 Email:
               </label>
               <Input 
@@ -87,7 +87,7 @@ function Footer() {
               />
             </div>
             <div className="space-y-2">
-              <label htmlFor="mensagem" className="block text-lg text-center sm:text-left">
+              <label htmlFor="mensagem" className="block text-lg text-left sm:text-left">
                 Mensagem:
               </label>
               <textarea 
@@ -98,8 +98,8 @@ function Footer() {
                 required
               />
             </div>
-            <div className="flex justify-center sm:justify-start">
-              <Button type="submit" className="bg-[#DD5656] hover:bg-[#BA3E3E] h-14 w-56 rounded-xl text-[20px]">
+            <div className="flex justify-center w-full sm:justify-start ">
+              <Button type="submit" className="bg-[#DD5656] hover:bg-[#BA3E3E] h-14 w-full rounded-xl text-[20px]">
                 Enviar
               </Button>
             </div>

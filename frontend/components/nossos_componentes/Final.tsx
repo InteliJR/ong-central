@@ -7,7 +7,6 @@ function Final(){
     return(
         <>
             <VoluntarioBanner />
-            <PaginaEquipe />
             <Footer />
         </>
     )

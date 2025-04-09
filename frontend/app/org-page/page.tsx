@@ -6,6 +6,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/shadcnui/radio-group"
 import Footer from "@/components/nossos_componentes/Footer";
 import { Textarea } from "@/components/shadcnui/textarea"
 import Image from "next/image";
+import Link from "next/link";
 
 export default function OrgPage() {
   return (
@@ -26,7 +27,7 @@ export default function OrgPage() {
           </div>
           
           {/* Content */}
-          <div className="relative z-10 px-4 md:px-12 lg:px-24 py-16 md:py-24 lg:py-32 text-white">
+          <div className="relative z-10 px-4 md:px-12 lg:px-48 py-16 md:py-24 lg:py-32 text-white">
             <div className="max-w-4xl space-y-6 md:space-y-8">
               <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold">
                 Organizações
@@ -44,18 +45,23 @@ export default function OrgPage() {
               </div>
               
               <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 pt-6">
-                <Button className="px-6 py-5 bg-red-500 hover:bg-red-600 text-white text-base md:text-lg rounded-md font-semibold">
-                  Já sou parte da Central!
-                </Button>
-                <Button className="px-6 py-5 bg-teal-500 hover:bg-teal-600 text-white text-base md:text-lg rounded-md font-semibold">
+                <Link href='/app'>
+                  <Button className="px-6 py-5 bg-[#DD5656] hover:bg-[#CD3333] text-white text-base md:text-lg rounded-md font-semibold">
+                    Já sou parte da Central!
+                  </Button>
+                </Link>
+                
+                <Link href='#cadastro'>
+                <Button className="px-6 py-5 bg-[#4CAF50] hover:bg-[#2AA62F] text-white text-base md:text-lg rounded-md font-semibold">
                   Cadastre-se
                 </Button>
+                </Link>     
               </div>
             </div>
           </div>
         </section>
 
-        <section className="space-y-6 px-4 py-12 md:py-16 max-w-5xl mx-auto w-full">
+        <section className="space-y-6 px-4 py-12 md:py-16 max-w-5xl mx-auto w-full" id="cadastro">
           <h2 className="text-2xl md:text-3xl text-center">Ainda não faz parte da Central?</h2>
           <h3 className="text-3xl md:text-4xl text-center font-bold mb-8">
             Preencha esse <span className="font-black">formulário</span>!

@@ -49,7 +49,7 @@ const DonationForm = ({ amount, name, email, setAmount, setName, setEmail, onPay
       }
 
       // Request client_secret from backend with improved error handling
-      const response = await fetch('http://localhost:3001/api/doar-unico', {
+      const response = await fetch('https://ong-project-latest-3.onrender.com/payments/doar-unico', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

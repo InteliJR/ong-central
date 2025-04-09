@@ -18,7 +18,7 @@ function VoluntarioBanner() {
             Ser voluntário é contribuir para uma sociedade mais justa e solidária, oferecendo tempo e habilidades para apoiar pessoas vulneráveis. Esse trabalho promove tanto o desenvolvimento social quanto o crescimento pessoal, fortalecendo valores como empatia, responsabilidade e respeito.
           </p>
           <div className="flex justify-center md:justify-start">
-            <Button className="bg-[#DD5656] hover:bg-[#BA3E3E] h-14 sm:h-16 md:h-20 w-80 sm:w-96 rounded-xl text-lg sm:text-xl md:text-[2rem]">
+            <Button className="bg-[#DD5656] hover:bg-[#BA3E3E]  h-14 sm:h-16 md:h-20 w-80 sm:w-96 rounded-3xl text-lg sm:text-xl md:text-[2rem]">
               Quero ser Voluntário!
             </Button>
           </div>
