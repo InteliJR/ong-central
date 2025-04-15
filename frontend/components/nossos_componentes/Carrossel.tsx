@@ -32,7 +32,7 @@ const Carousel: React.FC<CarouselProps> = ({ title }) => {
     const fetchCampaigns = async () => {
       try {
         setLoading(true);
-        const response = await fetch('https://ong-project-latest-3.onrender.com/campanhas/');
+        const response = await fetch('http://54.224.88.110:8000/campanhas/');
         
         if (!response.ok) {
           throw new Error('Falha ao carregar campanhas');

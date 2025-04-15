@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { Lexend } from "next/font/google";
+import { Roboto } from "next/font/google";
 
 // Configuração da fonte Lexend do Google Fonts
-const mainFontFamily = Lexend({
+const mainFontFamily = Roboto({
   weight: ["300", "700"],
   subsets: ["latin"],
 });

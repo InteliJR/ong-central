@@ -49,7 +49,7 @@ const DonationForm = ({ amount, name, email, setAmount, setName, setEmail, onPay
       }
 
       // Request client_secret from backend with improved error handling
-      const response = await fetch('https://ong-project-latest-3.onrender.com/payments/doar-unico', {
+      const response = await fetch('http://54.224.88.110:8000/payments/doar-unico', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -368,7 +368,7 @@ const DonationModal = ({ isOpen = false, onOpenChange, campaignTitle }: Donation
     <Dialog open={modalOpen} onOpenChange={handleOpenChange}>
       {!onOpenChange && (
         <DialogTrigger asChild>
-          <Card className="flex flex-col justify-center items-center p-6 w-1/2 h-56 text-center space-y-4 hover:shadow-lg transition-shadow cursor-pointer">
+          <Card className="flex flex-col justify-center items-center p-6 w-full h-56 text-center space-y-4 hover:shadow-lg transition-shadow cursor-pointer">
             <div className="mx-auto bg-white rounded-full flex items-center justify-center">
               <Image src="/icone_2.svg" alt="Quero doar agora" width={96} height={96} />
             </div>

@@ -26,6 +26,7 @@ export default function RegularDonationModal() {
     amount: ''
   });
   const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -38,10 +39,11 @@ export default function RegularDonationModal() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError(null);
+    setIsLoading(true);
 
     try {
-      // Cria uma sessão de checkout para assinatura no backend
-      const response = await axios.post('https://ong-project-latest-3.onrender.com/subscriptions/create-subscription-session', {
+      // Use Next.js API route as a proxy instead of calling external API directly
+      const response = await axios.post('/api/proxy/subscription', {
         name: formData.name,
         email: formData.email,
         amount: parseFloat(formData.amount) * 100 // Converter para centavos
@@ -59,6 +61,8 @@ export default function RegularDonationModal() {
     } catch (err) {
       setError(err.response?.data?.message || 'Erro ao processar assinatura');
       console.error(err);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -67,14 +71,14 @@ export default function RegularDonationModal() {
       {/* Card que aciona o modal */}
       <Card 
         onClick={() => setIsOpen(true)} 
-        className="flex flex-col justify-center items-center p-6 w-1/2 h-56 text-center space-y-4 hover:shadow-lg transition-shadow bg-white cursor-pointer "
+        className="flex flex-col justify-center items-center p-6 w-full h-56 text-center space-y-4 hover:shadow-lg transition-shadow bg-white cursor-pointer "
       >
         <Image src="/icone_1.svg" alt="Quero doar agora" width={96} height={96} />
         <div>
           <p className="font-medium">Quero ser</p>
           <p className="font-bold">doador regular</p>
         </div>
-        <p className='text-[10px]'>Se for assinante e quiser cancelar a assinatura, ligue para (31) 9999-99999</p>
+        <p className='text-[8px]'>Se for assinante e quiser cancelar a assinatura, ligue para (31) 3939-3990</p>
       </Card>
 
       {/* Modal para cadastro de doador regular */}
@@ -132,8 +136,9 @@ export default function RegularDonationModal() {
             <Button 
               type="submit" 
               className="w-full bg-green-600 hover:bg-green-700"
+              disabled={isLoading}
             >
-              Iniciar Assinatura
+              {isLoading ? 'Processando...' : 'Iniciar Assinatura'}
             </Button>
           </form>
         </DialogContent>

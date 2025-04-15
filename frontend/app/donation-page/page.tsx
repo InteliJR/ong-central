@@ -41,7 +41,7 @@ export default function DonationPage() {
         <section id="donation-money" className="space-y-6 mb-12 flex flex-col justify-center items-center">
           <h1 className="text-2xl text-center">Se interessou pela causa? <br></br><p className='text-4xl font-medium'>Então faça uma doação</p></h1>
           
-          <div className="flex flex-row w-full items-center justify-center gap-6">
+          <div className="flex sm:flex-row flex-col w-full items-center justify-center gap-6">
             {/* Donation Modals */}
             <DonationModal />
             <RegularDonationModal />

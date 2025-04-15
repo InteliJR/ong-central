@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Button } from "../shadcnui/button";
 
 function Banner() {
@@ -14,10 +15,11 @@ function Banner() {
 
       {/* Descrição e Botão */}
       <div className="w-full flex flex-col items-center sm:items-end gap-8">
-        
-        <Button className="bg-[#DD5656] hover:bg-[#BA3E3E] h-12 sm:h-16 w-3/4 sm:w-2/5 rounded-3xl text-[16px] sm:text-[32px]">
-          Quero Doar!
-        </Button>
+        <Link href="/donation-page" className="w-full h-12 items-center flex flex-row sm:items-end justify-end">
+          <Button className="bg-[#DD5656] hover:bg-[#BA3E3E] h-12 sm:h-16 w-full sm:w-2/5 rounded-3xl text-[16px] sm:text-[32px]">
+            Quero Doar!
+          </Button>
+        </Link>
       </div>
     </div>
   );
