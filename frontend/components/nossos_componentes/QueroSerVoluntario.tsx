@@ -6,18 +6,28 @@ import { RadioGroup, RadioGroupItem } from "@/components/shadcnui/radio-group";
 import { Label } from "@/components/shadcnui/label";
 import Header from "../../components/nossos_componentes/Header";
 import emailjs from "@emailjs/browser";
+import { FormEvent } from "react";
 
 const SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_VOLUNTARIO_ID;
 const TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
 const PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
 
 export default function QueroSerVoluntario() {
-  const handleOnSubmit = (event) => {
+  interface VolunteerFormData {
+    titulo: string;
+    nome: FormDataEntryValue | null;
+    email: FormDataEntryValue | null;
+    mensagem: FormDataEntryValue | null;
+    telefone: FormDataEntryValue | null;
+    tipo_voluntario: FormDataEntryValue | null;
+  }
+
+  const handleOnSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     // Capturando os valores do formulário
-    const formData = new FormData(event.target);
-    const data = {
+    const formData = new FormData(event.currentTarget);
+    const data: VolunteerFormData = {
       titulo: "Inscrição de Voluntário", // Adiciona título ao template
       nome: formData.get("nome"),
       email: formData.get("email"),
@@ -26,8 +36,13 @@ export default function QueroSerVoluntario() {
       tipo_voluntario: formData.get("tipo_voluntario"),
     };
 
+    // Convertendo para um objeto com chaves string
+    const formattedData = Object.fromEntries(
+      Object.entries(data).map(([key, value]) => [key, value || ""])
+    );
+
     // Envio para o EmailJS
-    emailjs.send(SERVICE_ID, TEMPLATE_ID, data, PUBLIC_KEY)
+    emailjs.send(SERVICE_ID || "", TEMPLATE_ID || "", formattedData, PUBLIC_KEY || "")
       .then((result) => {
         console.log(result.text);
         alert("Mensagem enviada com sucesso!");
@@ -37,7 +52,7 @@ export default function QueroSerVoluntario() {
         alert("Ocorreu um erro ao enviar a mensagem. Por favor, tente novamente.");
       });
 
-    event.target.reset();
+    event.currentTarget.reset();
   };
 
   return (

@@ -10,9 +10,17 @@ const PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
 
 function Footer() {
 
-  const handleOnSubmit = (event) => {
+  interface FormEvent extends React.FormEvent<HTMLFormElement> {
+    target: HTMLFormElement & {
+      nome: HTMLInputElement;
+      email: HTMLInputElement;
+      mensagem: HTMLTextAreaElement;
+    };
+  }
+
+  const handleOnSubmit = (event: FormEvent): void => {
     event.preventDefault();
-    emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, event.target, PUBLIC_KEY)
+    emailjs.sendForm(SERVICE_ID || '', TEMPLATE_ID || '', event.target, PUBLIC_KEY || '')
       .then((result) => {
         console.log(result.text);
         alert('Mensagem enviada com sucesso!');

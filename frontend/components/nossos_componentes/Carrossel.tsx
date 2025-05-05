@@ -32,7 +32,7 @@ const Carousel: React.FC<CarouselProps> = ({ title }) => {
     const fetchCampaigns = async () => {
       try {
         setLoading(true);
-        const response = await fetch('http://54.224.88.110:8000/campanhas/');
+        const response = await fetch(' https://api.centraldasolidariedade.org.br/campanhas');
         
         if (!response.ok) {
           throw new Error('Falha ao carregar campanhas');

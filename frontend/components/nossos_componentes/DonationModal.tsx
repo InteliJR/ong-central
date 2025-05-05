@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useState, Dispatch, SetStateAction } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogDescription } from '@/components/shadcnui/dialog';
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from '@/components/shadcnui/alert-dialog';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/shadcnui/tabs';
@@ -12,7 +12,7 @@ import { Elements, CardNumberElement, CardExpiryElement, CardCvcElement, useElem
 import Image from 'next/image';
 
 // Initialize Stripe with public key
-const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
 
 // Interface para as propriedades do DonationModal
 interface DonationModalProps {
@@ -21,18 +21,46 @@ interface DonationModalProps {
   campaignTitle?: string;
 }
 
-const DonationForm = ({ amount, name, email, setAmount, setName, setEmail, onPaymentSuccess, onPaymentConfirm, campaignTitle }) => {
+// Add this interface above DonationForm
+interface DonationFormProps {
+  amount: string;
+  name: string;
+  email: string;
+  setAmount: Dispatch<SetStateAction<string>>;
+  setName: Dispatch<SetStateAction<string>>;
+  setEmail: Dispatch<SetStateAction<string>>;
+  onPaymentSuccess?: () => void;
+  onPaymentConfirm?: () => void;
+  campaignTitle?: string;
+}
+
+// Add this interface above PixDonationForm (optional)
+interface PixDonationFormProps {
+  campaignTitle?: string;
+}
+
+const DonationForm: React.FC<DonationFormProps> = ({
+  amount,
+  name,
+  email,
+  setAmount,
+  setName,
+  setEmail,
+  onPaymentSuccess,
+  onPaymentConfirm,
+  campaignTitle,
+}) => {
   const stripe = useStripe();
   const elements = useElements();
-  const [isProcessing, setIsProcessing] = useState(false);
-  const [isConfirmOpen, setIsConfirmOpen] = useState(false);
-  const [paymentStatus, setPaymentStatus] = useState(null);
-  const [errorMessage, setErrorMessage] = useState(null); // Adicionar estado para mensagem de erro
+  const [isProcessing, setIsProcessing] = useState<boolean>(false);
+  const [isConfirmOpen, setIsConfirmOpen] = useState<boolean>(false);
+  const [paymentStatus, setPaymentStatus] = useState<'success' | 'error' | null>(null);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   
   // Estados para controle de erro dos campos
-  const [cardNumberError, setCardNumberError] = useState(null);
-  const [cardExpiryError, setCardExpiryError] = useState(null);
-  const [cardCvcError, setCardCvcError] = useState(null);
+  const [cardNumberError, setCardNumberError] = useState<string | null>(null);
+  const [cardExpiryError, setCardExpiryError] = useState<string | null>(null);
+  const [cardCvcError, setCardCvcError] = useState<string | null>(null);
 
   const handleDonation = async () => {
     if (!stripe || !elements) return;
@@ -49,7 +77,7 @@ const DonationForm = ({ amount, name, email, setAmount, setName, setEmail, onPay
       }
 
       // Request client_secret from backend with improved error handling
-      const response = await fetch('http://54.224.88.110:8000/payments/doar-unico', {
+      const response = await fetch('https://api.centraldasolidariedade.org.br/payments/doar-unico', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -95,7 +123,7 @@ const DonationForm = ({ amount, name, email, setAmount, setName, setEmail, onPay
 
       if (error) {
         console.error('Erro na confirmação do pagamento:', error);
-        setErrorMessage(error.message);
+        setErrorMessage(error.message ?? 'Erro na confirmação do pagamento');
         setPaymentStatus('error');
       } else if (paymentIntent.status === 'succeeded') {
         setPaymentStatus('success');
@@ -107,7 +135,11 @@ const DonationForm = ({ amount, name, email, setAmount, setName, setEmail, onPay
       }
     } catch (error) {
       console.error('Erro no processamento do pagamento:', error);
-      setErrorMessage(error.message || 'Erro desconhecido ao processar pagamento');
+      if (error instanceof Error) {
+        setErrorMessage(error.message || 'Erro desconhecido ao processar pagamento');
+      } else {
+        setErrorMessage('Erro desconhecido ao processar pagamento');
+      }
       setPaymentStatus('error');
     } finally {
       setIsProcessing(false);
@@ -132,7 +164,10 @@ const DonationForm = ({ amount, name, email, setAmount, setName, setEmail, onPay
   };
 
   // Função para lidar com as alterações nos campos do cartão
-  const handleCardChange = (event, setError) => {
+  const handleCardChange = (
+    event: { error?: { message: string } },
+    setError: Dispatch<SetStateAction<string | null>>
+  ): void => {
     if (event.error) {
       setError(event.error.message);
     } else {
@@ -171,7 +206,7 @@ const DonationForm = ({ amount, name, email, setAmount, setName, setEmail, onPay
             <AlertDialogCancel>Cancelar</AlertDialogCancel>
             <AlertDialogAction onClick={() => {
               setIsConfirmOpen(false);
-              onPaymentConfirm();
+              onPaymentConfirm && onPaymentConfirm();
               handleDonation();
             }}>
               Confirmar Doação
@@ -303,7 +338,7 @@ const DonationForm = ({ amount, name, email, setAmount, setName, setEmail, onPay
         <Button
           onClick={() => setIsConfirmOpen(true)}
           className="w-full bg-green-600 hover:bg-green-700 mt-4"
-          disabled={isProcessing || !stripe || !elements || !amount || !name || !email || cardNumberError || cardExpiryError || cardCvcError}
+          disabled={!!isProcessing || !stripe || !elements || !amount || !name || !email || !!cardNumberError || !!cardExpiryError || !!cardCvcError}
         >
           {isProcessing ? 'Processando...' : 'Doar com Cartão de Crédito'}
         </Button>
@@ -313,7 +348,7 @@ const DonationForm = ({ amount, name, email, setAmount, setName, setEmail, onPay
 };
 
 // Componente para doação via PIX
-const PixDonationForm = ({ campaignTitle }) => {
+const PixDonationForm: React.FC<PixDonationFormProps> = ({ campaignTitle }) => {
   return (
     <div className="flex flex-col items-center space-y-4 p-4">
       <Image 

@@ -16,7 +16,7 @@ import axios from 'axios';
 import Image from 'next/image';
 
 // Substitua pela sua Stripe publishable key
-const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
 
 export default function RegularDonationModal() {
   const [isOpen, setIsOpen] = useState(false);
@@ -25,25 +25,45 @@ export default function RegularDonationModal() {
     email: '',
     amount: ''
   });
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleInputChange = (e) => {
+  interface FormData {
+    name: string;
+    email: string;
+    amount: string;
+  }
+
+  interface InputChangeEvent extends React.ChangeEvent<HTMLInputElement> {}
+
+  const handleInputChange = (e: InputChangeEvent): void => {
     const { name, value } = e.target;
-    setFormData(prevState => ({
+    setFormData((prevState: FormData) => ({
       ...prevState,
       [name]: value
     }));
   };
 
-  const handleSubmit = async (e) => {
+  interface SubscriptionResponse {
+    sessionId: string;
+  }
+
+  interface AxiosErrorResponse {
+    response?: {
+      data?: {
+        message?: string;
+      };
+    };
+  }
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
     setError(null);
     setIsLoading(true);
 
     try {
       // Use Next.js API route as a proxy instead of calling external API directly
-      const response = await axios.post('/api/proxy/subscription', {
+      const response = await axios.post<SubscriptionResponse>('https://api.centraldasolidariedade.org.br/subscriptions/create-subscription-session', {
         name: formData.name,
         email: formData.email,
         amount: parseFloat(formData.amount) * 100 // Converter para centavos
@@ -53,13 +73,14 @@ export default function RegularDonationModal() {
 
       // Redireciona para o Stripe Checkout
       const stripe = await stripePromise;
-      const { error: stripeError } = await stripe.redirectToCheckout({ sessionId });
+      const { error: stripeError } = await stripe!.redirectToCheckout({ sessionId });
       if (stripeError) {
-        setError(stripeError.message);
+        setError(stripeError.message || null);
         console.error(stripeError);
       }
     } catch (err) {
-      setError(err.response?.data?.message || 'Erro ao processar assinatura');
+      const axiosError = err as AxiosErrorResponse;
+      setError(axiosError.response?.data?.message || 'Erro ao processar assinatura');
       console.error(err);
     } finally {
       setIsLoading(false);
